@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    overflow: hidden; /* Prevent scrollbars from bounce if strict 100vh */
+}
+
+/* New wrapper to center text in the available space */
+.welcome-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.welcome-title {
+    font-size: 5rem; /* Significantly larger */
+    font-weight: 900; /* Extra bold */
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.welcome-subtitle {
+    font-size: 1.25rem; /* Larger */
+    line-height: 1.6;
+    color: #a1a1aa;
+    max-width: 800px;
+    margin: 0;
+}
+
+/* Scroll indicator styling */
+.scroll-indicator {
+    padding-bottom: 50px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-indicator svg {
+    width: 32px;
+    height: 32px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 2rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+}

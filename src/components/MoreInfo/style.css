@@ -1,0 +1,92 @@
+.more-info-section {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 80px 20px;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.more-info-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 80px;
+    max-width: 800px;
+    text-transform: uppercase;
+    color: #8C1AF6; /* Purple color matching reference */
+}
+
+/* 
+   If needed, we can try to separate the lines with <br> 
+   or just let it break. 
+   The reference has "THE PROBLEM WE'RE" on line 1, "SOLVING" on line 2 
+*/
+
+.more-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px; /* Row gap 60, Col gap 40 */
+    max-width: 1200px;
+    width: 100%;
+}
+
+.info-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.info-icon-wrapper {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    /* The SVG itself seems to be white lines on transparent, 
+       or contained in a chat bubble shape. 
+       Assuming the SVG provided has the shape. */
+}
+
+.info-icon {
+    width: 100%;
+    height: auto;
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.info-card-text {
+    font-size: 1rem;
+    color: #d1d5db; /* Light grey */
+    line-height: 1.5;
+    margin: 0;
+}
+
+.migozz-solution {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .more-info-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .more-info-title {
+        font-size: 2.25rem;
+        margin-bottom: 50px;
+    }
+}
