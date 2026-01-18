@@ -1,10 +1,34 @@
 import type { JSX } from "react";
+import { useState } from "react";
 import "./style.css";
 import MigozzLogo from "../../assets/icons/Migozz.svg";
 import { useLanguage } from "../../Providers/LanguageContext/LanguageContext";
+import { useFirebase } from "../../Providers/FirebaseContext/FirebaseContext";
+import { checkUsernameExists } from "../../services/firebase/userService";
 
 export const JoinMigozz = (): JSX.Element => {
     const { language } = useLanguage();
+    const { db } = useFirebase();
+    const [username, setUsername] = useState<string>("");
+
+    const handleClaim = async () => {
+        if (!username.trim()) {
+            alert("Please enter a username");
+            return;
+        }
+
+        try {
+            const exists = await checkUsernameExists(db, username.trim());
+            if (exists) {
+                alert(`The username '${username}' is already taken.`);
+            } else {
+                alert(`The username '${username}' is available!`);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred while checking the username.");
+        }
+    };
 
     return (
         <section className="join-migozz-section">
@@ -22,10 +46,12 @@ export const JoinMigozz = (): JSX.Element => {
                         <input 
                             type="text" 
                             className="username-input" 
-                            placeholder={language?.LANDING?.USERNAME_PLACEHOLDER} 
+                            placeholder={language?.LANDING?.USERNAME_PLACEHOLDER}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
-                    <button className="claim-btn">
+                    <button className="claim-btn" onClick={handleClaim}>
                         {language?.LANDING?.CLAIM_BTN}
                     </button>
                 </div>
