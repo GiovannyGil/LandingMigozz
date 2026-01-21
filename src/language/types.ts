@@ -23,6 +23,19 @@ export interface Translations {
         SLIDE_2_TEXT: string;
         SLIDE_3_TEXT: string;
         WHATSAPP_BTN: string;
+        ALERTS: {
+            ENTER_USERNAME: string;
+            USERNAME_TAKEN: string;
+            USERNAME_AVAILABLE: string;
+            CHECK_USER_ERROR: string;
+            ENTER_EMAIL: string;
+            INVALID_EMAIL: string;
+            USERNAME_TAKEN_LATE: string;
+            EMAIL_REGISTERED: string;
+            VERIFICATION_SENT: string;
+            REGISTRATION_ERROR: string;
+            PROCESS_ERROR: string;
+        }
     }
 }
 

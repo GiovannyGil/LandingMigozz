@@ -213,14 +213,27 @@ const ES: Translations = {
         JOIN_TITLE: "¡Únete a Migozz!",
         JOIN_SUBTITLE: "¡Crea tu Ecosistema Social con IA! Recibe Regalos y Monetiza.",
         USERNAME_PLACEHOLDER: "migozz.ai/tunombre",
-        CLAIM_BTN: "Reclamar nombre de usuario",
+        CLAIM_BTN: "Validar disponibilidad ",
         PRE_SAVE_BTN: "Pre-Guardar",
         SECURITY_NOTE_PART_1: "Sin tarifa de registro",
         SECURITY_NOTE_PART_2: "Tu información está segura.",
         SLIDE_1_TEXT: "Visualiza el número total de tus seguidores en todas tus plataformas. Migozz te muestra el verdadero poder de tu comunidad.",
         SLIDE_2_TEXT: "Tus seguidores pueden seguirte en otras redes directamente desde Migozz. Tú decides cómo y dónde conectar.",
         SLIDE_3_TEXT: "Recibe regalos por tu influencia y participación. Cuanto más creces, más recompensas desbloqueas.",
-        WHATSAPP_BTN: "Únete a nuestro canal de WhatsApp"
+        WHATSAPP_BTN: "Únete a nuestro canal de WhatsApp",
+        ALERTS: {
+            ENTER_USERNAME: "Por favor, ingresa un nombre de usuario.",
+            USERNAME_TAKEN: "El nombre de usuario '{username}' ya está en uso.",
+            USERNAME_AVAILABLE: "¡El nombre de usuario '{username}' está disponible!",
+            CHECK_USER_ERROR: "Ocurrió un error al verificar el nombre de usuario.",
+            ENTER_EMAIL: "Por favor, ingresa tu correo electrónico.",
+            INVALID_EMAIL: "Por favor, ingresa un correo electrónico válido.",
+            USERNAME_TAKEN_LATE: "El nombre de usuario '{username}' ya ha sido tomado.",
+            EMAIL_REGISTERED: "El correo electrónico ya está registrado.",
+            VERIFICATION_SENT: "Se ha enviado un correo de verificación.",
+            REGISTRATION_ERROR: "No se pudo completar el registro. Inténtalo de nuevo.",
+            PROCESS_ERROR: "Ocurrió un error al procesar tu solicitud."
+        }
     }
 }
 

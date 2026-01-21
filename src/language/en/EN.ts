@@ -213,14 +213,27 @@ const EN: Translations = {
         JOIN_TITLE: "Join Migozz!",
         JOIN_SUBTITLE: "Create your AI Social Ecosystem! Recieve Gifts & Monetize.",
         USERNAME_PLACEHOLDER: "migozz.ai/yourname",
-        CLAIM_BTN: "Claim your username",
+        CLAIM_BTN: "Validate availability",
         PRE_SAVE_BTN: "Pre-Save",
         SECURITY_NOTE_PART_1: "No registration fee",
         SECURITY_NOTE_PART_2: "Your information is secure.",
         SLIDE_1_TEXT: "Visualize the total number of your followers across all your platforms. Migozz shows you the true power of your community.",
         SLIDE_2_TEXT: "Your followers can follow you on other networks directly from Migozz. You decide how and where to connect.",
         SLIDE_3_TEXT: "Receive gifts for your influence and participation. The more you grow, the more rewards you unlock.",
-        WHATSAPP_BTN: "Join our WhatsApp channel"
+        WHATSAPP_BTN: "Join our WhatsApp channel",
+        ALERTS: {
+            ENTER_USERNAME: "Please enter a username.",
+            USERNAME_TAKEN: "The username '{username}' is already taken.",
+            USERNAME_AVAILABLE: "The username '{username}' is available!",
+            CHECK_USER_ERROR: "An error occurred while checking the username.",
+            ENTER_EMAIL: "Please enter your email address.",
+            INVALID_EMAIL: "Please enter a valid email address.",
+            USERNAME_TAKEN_LATE: "The username '{username}' has already been taken.",
+            EMAIL_REGISTERED: "The email address is already registered.",
+            VERIFICATION_SENT: "A verification email has been sent.",
+            REGISTRATION_ERROR: "Could not complete registration. Please try again.",
+            PROCESS_ERROR: "An error occurred while processing your request."
+        }
     }
 }
 
