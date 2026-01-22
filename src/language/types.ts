@@ -1,5 +1,3 @@
-import Language from "./Language";
-
 export interface Translations {
     [key: string]: any;
     LANDING: {
