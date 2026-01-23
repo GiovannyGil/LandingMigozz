@@ -13,6 +13,7 @@ export interface Translations {
         JOIN_TITLE: string;
         JOIN_SUBTITLE: string;
         USERNAME_PLACEHOLDER: string;
+        EMAIL_PLACEHOLDER: string;
         CLAIM_BTN: string;
         PRE_SAVE_BTN: string;
         SECURITY_NOTE_PART_1: string;

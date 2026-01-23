@@ -3,17 +3,20 @@ import { useState } from "react";
 import "./style.css";
 import MigozzLogo from "../../assets/icons/Migozz.svg";
 import { useLanguage } from "../../Providers/LanguageContext/LanguageContext";
-import { useFirebase } from "../../Providers/FirebaseContext/FirebaseContext";
+// import { useFirebase } from "../../Providers/FirebaseContext/FirebaseContext";
 import { checkUsernameExists, checkEmailExists } from "../../services/firebase/userService";
 import { Alert } from "../Alert/Alert";
+import { Loader } from "../Loader/Loader";
 
 export const JoinMigozz = (): JSX.Element => {
     const { language } = useLanguage();
-    const { db } = useFirebase();
+    // const { db } = useFirebase(); // db not needed for API calls
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [isUsernameAvailable, setIsUsernameAvailable] = useState<boolean>(false);
     const [showEmailInput, setShowEmailInput] = useState<boolean>(false);
+    const [emailError, setEmailError] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     
     // Alert State
     const [alertState, setAlertState] = useState<{
@@ -44,8 +47,9 @@ export const JoinMigozz = (): JSX.Element => {
             return;
         }
 
+        setIsLoading(true);
         try {
-            const exists = await checkUsernameExists(db, username.trim());
+            const exists = await checkUsernameExists(username.trim());
             if (exists) {
                 showAlert('error', (language?.LANDING?.ALERTS?.USERNAME_TAKEN || "The username '{username}' is already taken.").replace('{username}', username));
                 setIsUsernameAvailable(false);
@@ -53,10 +57,12 @@ export const JoinMigozz = (): JSX.Element => {
                 showAlert('success', (language?.LANDING?.ALERTS?.USERNAME_AVAILABLE || "The username '{username}' is available!").replace('{username}', username));
                 setIsUsernameAvailable(true);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
-            showAlert('error', language?.LANDING?.ALERTS?.CHECK_USER_ERROR || "An error occurred while checking the username.");
+            showAlert('error', error?.message || language?.LANDING?.ALERTS?.CHECK_USER_ERROR || "An error occurred while checking the username.");
             setIsUsernameAvailable(false);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -67,33 +73,43 @@ export const JoinMigozz = (): JSX.Element => {
         } else {
             // Second click: Validate Email
             if (!email.trim()) {
-                showAlert('warning', language?.LANDING?.ALERTS?.ENTER_EMAIL || "Please enter your email address.");
+                const msg = language?.LANDING?.ALERTS?.ENTER_EMAIL || "Please enter your email address.";
+                showAlert('warning', msg);
+                setEmailError(msg);
                 return;
             }
 
             // Simple email regex validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                showAlert('warning', language?.LANDING?.ALERTS?.INVALID_EMAIL || "Please enter a valid email address.");
+                const msg = language?.LANDING?.ALERTS?.INVALID_EMAIL || "Please enter a valid email address.";
+                showAlert('warning', msg);
+                setEmailError(msg);
                 return;
             }
 
+            setEmailError(""); // Clear previous errors
+            setIsLoading(true);
+
             try {
                 // Check if username is still available (just in case)
-                const userExists = await checkUsernameExists(db, username.trim());
+                const userExists = await checkUsernameExists(username.trim());
                 if (userExists) {
-                    showAlert('error', (language?.LANDING?.ALERTS?.USERNAME_TAKEN_LATE || "The username '{username}' has already been taken.").replace('{username}', username));
+                    const msg = (language?.LANDING?.ALERTS?.USERNAME_TAKEN_LATE || "The username '{username}' has already been taken.").replace('{username}', username);
+                    showAlert('error', msg);
                     setIsUsernameAvailable(false);
                     setShowEmailInput(false); // Reset to starts
                     return;
                 }
 
-                const emailExists = await checkEmailExists(db, email.trim());
+                const emailExists = await checkEmailExists(email.trim());
                 if (emailExists) {
-                    showAlert('error', language?.LANDING?.ALERTS?.EMAIL_REGISTERED || "The email address is already registered.");
+                    const msg = language?.LANDING?.ALERTS?.EMAIL_REGISTERED || "The email address is already registered.";
+                    showAlert('error', msg);
+                    setEmailError(msg);
                 } else {
                     // Call Pre-register Endpoint
-                    const response = await fetch('https://migos-ms-895592952324.us-central1.run.app/pre-register/', {
+                    const response = await fetch('/pre-register/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -110,14 +126,32 @@ export const JoinMigozz = (): JSX.Element => {
                         setShowEmailInput(false);
                         setUsername("");
                         setEmail("");
+                        setEmailError("");
                     } else {
                         console.error("Pre-register API failed", response.status, response.statusText);
-                        showAlert('error', language?.LANDING?.ALERTS?.REGISTRATION_ERROR || "Could not complete registration. Please try again.");
+                        
+                        // Try to parse error message from API
+                        let errorMsg = language?.LANDING?.ALERTS?.REGISTRATION_ERROR || "Could not complete registration. Please try again.";
+                        try {
+                            const errorData = await response.json();
+                            if (errorData && (errorData.detail || errorData.message || errorData.error)) {
+                                errorMsg = errorData.detail || errorData.message || errorData.error;
+                            }
+                        } catch (e) {
+                            // If parsing fails, stick to default message
+                        }
+                        
+                        showAlert('error', errorMsg);
+                        setEmailError(errorMsg);
                     }
                 }
-            } catch (error) {
+            } catch (error: any) {
                 console.error(error);
-                showAlert('error', language?.LANDING?.ALERTS?.PROCESS_ERROR || "An error occurred while processing your request.");
+                const errorMsg = error?.message || (language?.LANDING?.ALERTS?.PROCESS_ERROR || "An error occurred while processing your request.");
+                showAlert('error', errorMsg);
+                setEmailError(errorMsg);
+            } finally {
+                setIsLoading(false);
             }
         }
     };
@@ -155,14 +189,20 @@ export const JoinMigozz = (): JSX.Element => {
                                     }}
                                 />
                             </div>
-                            <button className="claim-btn" onClick={handleClaim}>
-                                {language?.LANDING?.CLAIM_BTN}
+                            <button className="claim-btn" onClick={handleClaim} disabled={isLoading}>
+                                {!showEmailInput && isLoading ? (
+                                     <div style={{ transform: 'scale(0.5)', display: 'flex', justifyContent: 'center' }}>
+                                        <Loader />
+                                     </div>
+                                ) : (
+                                    language?.LANDING?.CLAIM_BTN
+                                )}
                             </button>
                         </div>
                     </div>
                 ) : (
                     <div className="input-content slide-in-right">
-                         <div className="input-group-container">
+                         <div className={`input-group-container ${emailError ? 'error' : ''}`}>
                             <div className="link-icon-box">
                                 {/* Can use an email icon here if available, or re-use logo */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -171,21 +211,35 @@ export const JoinMigozz = (): JSX.Element => {
                                 <input 
                                     type="email" 
                                     className="username-input" 
-                                    placeholder="Ingresa tu correo / Enter your email"
+                                    placeholder={language?.LANDING?.EMAIL_PLACEHOLDER}
                                     value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value);
+                                        if (emailError) setEmailError("");
+                                    }}
                                 />
                             </div>
                         </div>
+                        {emailError && (
+                            <div className="input-error-message">
+                                {emailError}
+                            </div>
+                        )}
                     </div>
                 )}
 
                 <button 
                     className="pre-save-btn" 
                     onClick={handlePreSave}
-                    disabled={!isUsernameAvailable}
+                    disabled={!isUsernameAvailable || (showEmailInput && isLoading)}
                 >
-                    {language?.LANDING?.PRE_SAVE_BTN}
+                     {showEmailInput && isLoading ? (
+                         <div style={{ transform: 'scale(0.6)', display: 'flex', justifyContent: 'center' }}>
+                            <Loader />
+                         </div>
+                    ) : (
+                        language?.LANDING?.PRE_SAVE_BTN
+                    )}
                 </button>
 
                 <div className="security-note">

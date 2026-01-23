@@ -9,6 +9,13 @@
     ],
     "rewrites": [
       {
+        "source": "/pre-register/**",
+        "run": {
+          "serviceId": "migos-ms",
+          "region": "us-central1"
+        }
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

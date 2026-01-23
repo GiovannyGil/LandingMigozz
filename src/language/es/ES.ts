@@ -213,6 +213,7 @@ const ES: Translations = {
         JOIN_TITLE: "¡Únete a Migozz!",
         JOIN_SUBTITLE: "¡Crea tu Ecosistema Social con IA! Recibe Regalos y Monetiza.",
         USERNAME_PLACEHOLDER: "migozz.ai/tunombre",
+        EMAIL_PLACEHOLDER: "Ingresa tu correo",
         CLAIM_BTN: "Validar disponibilidad ",
         PRE_SAVE_BTN: "Pre-Guardar",
         SECURITY_NOTE_PART_1: "Sin tarifa de registro",

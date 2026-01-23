@@ -16,16 +16,16 @@ export const SocialNetworks = (): JSX.Element => {
             <div className="social-content">
                 {/* Social Media Icons Group */}
                 <div className="social-icons">
-                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-icon-link">
+                    <a href="https://www.tiktok.com/@migozzoficial" target="_blank" rel="noopener noreferrer" className="social-icon-link">
                         <img src={tiktokIcon} alt="TikTok" className="social-icon-img" />
                     </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon-link">
+                    <a href="https://www.instagram.com/migozzofficial/" target="_blank" rel="noopener noreferrer" className="social-icon-link">
                         <img src={instagramIcon} alt="Instagram" className="social-icon-img" />
                     </a>
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon-link">
+                    <a href=" https://www.facebook.com/profile.php?id=61581724792864" target="_blank" rel="noopener noreferrer" className="social-icon-link">
                         <img src={facebookIcon} alt="Facebook" className="social-icon-img" />
                     </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon-link">
+                    <a href="https://www.youtube.com/@migozzoficial" target="_blank" rel="noopener noreferrer" className="social-icon-link">
                         <img src={youtubeIcon} alt="YouTube" className="social-icon-img" />
                     </a>
                 </div>
