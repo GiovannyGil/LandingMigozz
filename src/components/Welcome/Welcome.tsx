@@ -17,7 +17,7 @@ export const Welcome = (): JSX.Element => {
             </div>
 
             {/* Scroll indicator with infinite bounce animation */}
-            <div className="scroll-indicator">
+            {/* <div className="scroll-indicator">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -31,7 +31,7 @@ export const Welcome = (): JSX.Element => {
                 >
                     <path d="m6 9 6 6 6-6"/>
                 </svg>
-            </div>
+            </div> */}
         </section>
     );
 };
