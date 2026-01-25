@@ -1,6 +1,6 @@
 
 import type { JSX } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./style.css";
 
 /* Icons defined inline to avoid dependencies */
@@ -34,17 +34,23 @@ export const Alert = ({
     message, 
     isOpen, 
     onClose, 
-    autoCloseDuration = 3000 
+    autoCloseDuration = 2000 
 }: AlertProps): JSX.Element | null => {
     
+    const savedCallback = useRef(onClose);
+
+    useEffect(() => {
+        savedCallback.current = onClose;
+    }, [onClose]);
+
     useEffect(() => {
         if (isOpen && autoCloseDuration > 0) {
             const timer = setTimeout(() => {
-                onClose();
+                savedCallback.current();
             }, autoCloseDuration);
             return () => clearTimeout(timer);
         }
-    }, [isOpen, autoCloseDuration, onClose]);
+    }, [isOpen, autoCloseDuration]);
 
     if (!isOpen) return null;
 

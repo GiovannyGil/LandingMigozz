@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./style.css";
 import MigozzLogo from "../../assets/icons/Migozz.svg";
 import { useLanguage } from "../../Providers/LanguageContext/LanguageContext";
@@ -16,6 +16,8 @@ export const JoinMigozz = (): JSX.Element => {
     const [isUsernameAvailable, setIsUsernameAvailable] = useState<boolean>(false);
     const [showEmailInput, setShowEmailInput] = useState<boolean>(false);
     const [emailError, setEmailError] = useState<string>("");
+    const [usernameError, setUsernameError] = useState<string>(""); // New state for username error
+    const [isCheckingUsername, setIsCheckingUsername] = useState<boolean>(false); // Sync state
     const [isLoading, setIsLoading] = useState<boolean>(false);
     
     // Alert State
@@ -29,9 +31,9 @@ export const JoinMigozz = (): JSX.Element => {
         message: ''
     });
 
-    const closeAlert = () => {
+    const closeAlert = useCallback(() => {
         setAlertState(prev => ({ ...prev, isOpen: false }));
-    };
+    }, []);
 
     const showAlert = (type: 'info' | 'success' | 'warning' | 'error', message: string) => {
         setAlertState({
@@ -41,21 +43,72 @@ export const JoinMigozz = (): JSX.Element => {
         });
     };
 
+    // Real-time validation effect
+    useEffect(() => {
+        // Clear errors immediately when typing starts
+        setUsernameError("");
+        if (!username.trim()) {
+            setIsUsernameAvailable(false);
+            return;
+        }
+
+        setIsCheckingUsername(true);
+        const debounceTimer = setTimeout(async () => {
+            try {
+                const exists = await checkUsernameExists(username.trim());
+                if (exists) {
+                    setUsernameError((language?.LANDING?.ALERTS?.USERNAME_TAKEN || "The username '{username}' is already taken.").replace('{username}', username));
+                    setIsUsernameAvailable(false);
+                } else {
+                    setIsUsernameAvailable(true);
+                }
+            } catch (error) {
+                console.error("Validation error:", error);
+                // Optionally handle validation network errors here, 
+                // but usually better to let the user try 'Click' to see real error
+            } finally {
+                setIsCheckingUsername(false);
+            }
+        }, 500); // 500ms delay
+
+        return () => clearTimeout(debounceTimer);
+    }, [username, language]);
+
     const handleClaim = async () => {
         if (!username.trim()) {
             showAlert('warning', language?.LANDING?.ALERTS?.ENTER_USERNAME || "Please enter a username.");
             return;
         }
 
+        // If error exists visibly, show alert immediately
+        if (usernameError) {
+             showAlert('error', usernameError);
+             return;
+        }
+
+        // If currently checking (debounce active), wait or show loading
+        if (isCheckingUsername) {
+            // Can show a mini loader or just wait. 
+            // For now let's just trigger loading to indicate work is happening
+        }
+
         setIsLoading(true);
         try {
+            // We force a check here if for some reason the debounce didn't catch it 
+            // or to confirm 100% before proceeding
             const exists = await checkUsernameExists(username.trim());
             if (exists) {
-                showAlert('error', (language?.LANDING?.ALERTS?.USERNAME_TAKEN || "The username '{username}' is already taken.").replace('{username}', username));
+                const msg = (language?.LANDING?.ALERTS?.USERNAME_TAKEN || "The username '{username}' is already taken.").replace('{username}', username);
+                showAlert('error', msg);
+                setUsernameError(msg);
                 setIsUsernameAvailable(false);
             } else {
                 showAlert('success', (language?.LANDING?.ALERTS?.USERNAME_AVAILABLE || "The username '{username}' is available!").replace('{username}', username));
                 setIsUsernameAvailable(true);
+                // Optionally move to next step immediately if that's the desired flow
+                // But current flow seems to be: Check -> Alert Success -> Maybe user clicks Claim again? 
+                // Creating a smooth flow: if available, maybe we should just ASK the user if they want to proceed?
+                // The original code just showed alert logic. Keeping it to minimize flow disruption unless asked.
             }
         } catch (error: any) {
             console.error(error);
@@ -69,6 +122,12 @@ export const JoinMigozz = (): JSX.Element => {
     const handlePreSave = async () => {
         if (!showEmailInput) {
             // First click: Show Email Input
+            // Check availability one last time or rely on state?
+            if (!isUsernameAvailable) { 
+                 // If invalid or not checked, try checking
+                 handleClaim(); 
+                 return;
+            }
             setShowEmailInput(true);
         } else {
             // Second click: Validate Email
@@ -127,6 +186,7 @@ export const JoinMigozz = (): JSX.Element => {
                         setUsername("");
                         setEmail("");
                         setEmailError("");
+                        setUsernameError("");
                     } else {
                         console.error("Pre-register API failed", response.status, response.statusText);
                         
@@ -173,24 +233,25 @@ export const JoinMigozz = (): JSX.Element => {
 
                 {!showEmailInput ? (
                     <div className="input-content">
-                        <div className="input-group-container">
+                        <div className={`input-group-container ${usernameError ? 'error' : ''}`}>
                             <div className="link-icon-box">
                                 <img src={MigozzLogo} alt="" className="link-icon-svg" />
                             </div>
                             <div className="username-input-wrapper">
+                                <span className="url-prefix">migozz.ai/</span>
                                 <input 
                                     type="text" 
                                     className="username-input" 
-                                    placeholder={language?.LANDING?.USERNAME_PLACEHOLDER}
+                                    placeholder={language?.LANDING?.USERNAME_PLACEHOLDER || "yourname"}
                                     value={username}
                                     onChange={(e) => {
                                         setUsername(e.target.value);
-                                        setIsUsernameAvailable(false); // Reset availability on change
+                                        // setIsUsernameAvailable(false); // Handled by effect
                                     }}
                                 />
                             </div>
-                            <button className="claim-btn" onClick={handleClaim} disabled={isLoading}>
-                                {!showEmailInput && isLoading ? (
+                            <button className="claim-btn" onClick={handleClaim} disabled={isLoading || isCheckingUsername}>
+                                {!showEmailInput && (isLoading || isCheckingUsername) ? (
                                      <div style={{ transform: 'scale(0.5)', display: 'flex', justifyContent: 'center' }}>
                                         <Loader />
                                      </div>
@@ -199,6 +260,11 @@ export const JoinMigozz = (): JSX.Element => {
                                 )}
                             </button>
                         </div>
+                        {usernameError && (
+                            <div className="input-error-message">
+                                {usernameError}
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <div className="input-content slide-in-right">
