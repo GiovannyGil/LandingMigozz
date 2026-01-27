@@ -9,9 +9,9 @@ import { SocialNetworks } from './components/SocialNetworks/SocialNetworks'
 function App() {
   return (
     <>
-      <Welcome />
-      <Video />
       <JoinMigozz />
+      <Video />
+      <Welcome />
       <SlideExample />
       <MoreInfo />
       <SocialNetworks />
