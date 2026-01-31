@@ -24,7 +24,7 @@ export const SlideExample = (): JSX.Element => {
                 {/* Item 2 */}
                 <div className="example-card">
                     <div className="example-image-container">
-                        <img src={exampleTwo} alt="Connect networks" className="example-image" />
+                        <img src={exampleThree} alt="Connect networks" className="example-image" />
                     </div>
                     <p className="example-text">
                         {language?.LANDING?.SLIDE_2_TEXT}
@@ -34,7 +34,7 @@ export const SlideExample = (): JSX.Element => {
                 {/* Item 3 */}
                 <div className="example-card">
                     <div className="example-image-container">
-                        <img src={exampleThree} alt="Receive gifts and rewards" className="example-image" />
+                        <img src={exampleTwo} alt="Receive gifts and rewards" className="example-image" />
                     </div>
                     <p className="example-text">
                         {language?.LANDING?.SLIDE_3_TEXT}

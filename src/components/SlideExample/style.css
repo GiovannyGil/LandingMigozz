@@ -24,9 +24,7 @@
 
 .example-image-container {
     width: 100%;
-    /* Aspect ratio for the phone images. Usually phones are around 9:16 or similar.
-       We'll let the image determine height but max-out the width. */
-    max-width: 300px; /* Adjust based on desired size */
+    max-width: 400px;
     margin-bottom: 2rem;
     transition: transform 0.3s ease;
 }

@@ -238,7 +238,7 @@ export const JoinMigozz = (): JSX.Element => {
                                 <img src={MigozzLogo} alt="" className="link-icon-svg" />
                             </div>
                             <div className="username-input-wrapper">
-                                <span className="url-prefix">migozz.ai/</span>
+                                <span className="url-prefix">migozz.com/</span>
                                 <input 
                                     type="text" 
                                     className="username-input" 

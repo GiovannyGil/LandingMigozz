@@ -8,7 +8,7 @@ export const Video = (): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // YouTube Embed URL with autoplay
-    const videoUrl = "https://www.youtube.com/embed/AE3lnYXW10o?autoplay=1&rel=0";
+    const videoUrl = "https://www.youtube.com/embed/JH7a1rH371g?autoplay=1";
 
     const openModal = () => {
         setIsModalOpen(true);
