@@ -14,14 +14,21 @@ export const checkUsernameExists = async (username: string): Promise<boolean> =>
             body: JSON.stringify({ username }),
         });
 
-        // Parse response
-        const data = await response.json();
+        // Safely try to parse JSON
+        let data: any = {};
+        const text = await response.text();
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            // Processing failed, if response was not ok, we just use status
+            console.warn("Could not parse response JSON", e);
+        }
         
         if (!response.ok) {
             // usage of 409 Conflict often implies existence in REST
             if (response.status === 409) return true;
             
-            throw new Error(data.message || data.detail || "Failed to check username.");
+            throw new Error(data?.message || data?.detail || `Server Error: ${response.status}`);
         }
 
         // Handle different possible response formats
@@ -57,11 +64,18 @@ export const checkEmailExists = async (email: string): Promise<boolean> => {
             body: JSON.stringify({ email }),
         });
 
-        const data = await response.json();
+        // Safely try to parse JSON
+        let data: any = {};
+        const text = await response.text();
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            console.warn("Could not parse response JSON", e);
+        }
 
         if (!response.ok) {
              if (response.status === 409) return true;
-             throw new Error(data.message || data.detail || "Failed to check email.");
+             throw new Error(data?.message || data?.detail || `Server Error: ${response.status}`);
         }
         
         if (typeof data.exists === 'boolean') return data.exists;

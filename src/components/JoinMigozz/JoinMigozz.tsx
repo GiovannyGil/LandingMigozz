@@ -73,8 +73,8 @@ export const JoinMigozz = (): JSX.Element => {
                 }
             } catch (error) {
                 console.error("Validation error:", error);
-                // Optionally handle validation network errors here, 
-                // but usually better to let the user try 'Click' to see real error
+                setIsUsernameAvailable(false);
+                setUsernameError(language?.LANDING?.ALERTS?.CHECK_USER_ERROR || "Error validating username.");
             } finally {
                 setIsCheckingUsername(false);
             }
@@ -121,7 +121,9 @@ export const JoinMigozz = (): JSX.Element => {
             }
         } catch (error: any) {
             console.error(error);
-            showAlert('error', error?.message || language?.LANDING?.ALERTS?.CHECK_USER_ERROR || "An error occurred while checking the username.");
+            const msg = error?.message || language?.LANDING?.ALERTS?.CHECK_USER_ERROR || "An error occurred while checking the username.";
+            showAlert('error', msg);
+            setUsernameError(msg);
             setIsUsernameAvailable(false);
         } finally {
             setIsLoading(false);
@@ -262,13 +264,21 @@ export const JoinMigozz = (): JSX.Element => {
                                     }}
                                 />
                             </div>
-                            <button className="claim-btn" onClick={handleClaim} disabled={isLoading || isCheckingUsername}>
+                            <button 
+                                className={`claim-btn ${isUsernameAvailable ? 'success' : ''} ${usernameError ? 'error' : ''}`} 
+                                onClick={handleClaim} 
+                                disabled={isLoading || isCheckingUsername}
+                            >
                                 {!showEmailInput && (isLoading || isCheckingUsername) ? (
                                      <div style={{ transform: 'scale(0.5)', display: 'flex', justifyContent: 'center' }}>
                                         <Loader />
                                      </div>
                                 ) : (
-                                    language?.LANDING?.CLAIM_BTN
+                                    usernameError 
+                                        ? "Not available" 
+                                        : isUsernameAvailable 
+                                            ? "Available" 
+                                            : language?.LANDING?.CLAIM_BTN
                                 )}
                             </button>
                         </div>
