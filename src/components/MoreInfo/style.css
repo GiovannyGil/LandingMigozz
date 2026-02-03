@@ -1,22 +1,33 @@
 .more-info-section {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 80px 20px;
+    background-color: #FFFFFF;
+    color: #000000;
+    padding-bottom: 80px;
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+}
+
+.more-info-title-container {
+    width: 100%;
+    background-color: #000000;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
 }
 
 .more-info-title {
     text-align: center;
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 80px;
-    max-width: 800px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
     text-transform: uppercase;
-    color: #8C1AF6; /* Purple color matching reference */
+    color: #D43AB6; /* Pink color */
+    letter-spacing: 1px;
 }
 
 /* 
@@ -31,6 +42,8 @@
     gap: 60px 40px; /* Row gap 60, Col gap 40 */
     max-width: 1200px;
     width: 100%;
+    padding: 0 20px; /* Add side padding to prevent touching edges */
+    box-sizing: border-box;
 }
 
 .info-card {
@@ -41,8 +54,8 @@
 
 .info-icon-wrapper {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+    width: 70px;
+    height: 70px;
     /* The SVG itself seems to be white lines on transparent, 
        or contained in a chat bubble shape. 
        Assuming the SVG provided has the shape. */
@@ -60,33 +73,81 @@
 }
 
 .info-card-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 800;
     margin: 0;
     line-height: 1.2;
+    color: #D43AB6; /* Pink color title */
+    margin-bottom: 0.5rem;
 }
 
 .info-card-text {
     font-size: 1rem;
-    color: #d1d5db; /* Light grey */
+    color: #1F2937; /* Dark text */
     line-height: 1.5;
     margin: 0;
+    font-weight: 500;
 }
 
 .migozz-solution {
-    color: #ffffff;
-    font-weight: 700;
+    color: #D43AB6; /* Pink solution label */
+    font-weight: 800;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
     .more-info-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px; /* Increased gap for better separation */
     }
     
+    .more-info-title-container {
+        padding: 30px 15px;
+        margin-bottom: 40px;
+    }
+
     .more-info-title {
-        font-size: 2.25rem;
-        margin-bottom: 50px;
+        font-size: 2.2rem;
+        margin-bottom: 0;
+    }
+
+    /* Mobile Layout for Info Card: Icon|Title top row, Text bottom row */
+    .info-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 15px;
+        align-items: center;
+        text-align: left; /* Default alignment */
+    }
+
+    .info-icon-wrapper {
+        width: 60px; /* Slightly smaller than desktop but prominent */
+        height: 60px;
+        grid-row: 1;
+        grid-column: 1;
+        flex-shrink: 0;
+    }
+
+    /* Unwrap the content div to place title and text in grid directly */
+    .info-content {
+        display: contents;
+    }
+
+    .info-card-title {
+        grid-row: 1;
+        grid-column: 2;
+        font-size: 1.4rem;
+        line-height: 1.2;
+        margin: 0;
+        text-align: left;
+    }
+
+    .info-card-text {
+        grid-row: 2;
+        grid-column: 1 / -1; /* Span full width */
+        margin-top: 20px;
+        text-align: center; /* Center the description text */
+        font-size: 1.05rem;
     }
 }

@@ -8,12 +8,14 @@ export const Welcome = (): JSX.Element => {
     return (
         <section className="welcome-container">
             <div className="welcome-content">
-                <h1 className="welcome-title">
-                    {language?.LANDING?.WELCOME_TITLE}
-                </h1>
-                <p className="welcome-subtitle">
-                    {language?.LANDING?.WELCOME_SUBTITLE}
-                </p>
+                <h1 
+                    className="welcome-title"
+                    dangerouslySetInnerHTML={{ __html: language?.LANDING?.WELCOME_TITLE || "" }}
+                />
+                <p 
+                    className="welcome-subtitle"
+                    dangerouslySetInnerHTML={{ __html: language?.LANDING?.WELCOME_SUBTITLE || "" }}
+                />
             </div>
 
             {/* Scroll indicator with infinite bounce animation */}

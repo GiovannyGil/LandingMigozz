@@ -2,8 +2,8 @@ import type { Translations } from "../types";
 
 const ES: Translations = {
     LANDING: {
-        WELCOME_TITLE: "EL PRIMER ECOSISTEMA DE REDES SOCIALES CON IA",
-        WELCOME_SUBTITLE: "Migozz es el ecosistema social definitivo impulsado por IA que conecta, centraliza y monetiza toda tu presencia digital.",
+        WELCOME_TITLE: "TU PRIMER <br /><span class=\"highlight\">ECOSISTEMA IA</span>",
+        WELCOME_SUBTITLE: "Migozz es el <strong>ecosistema social definitivo impulsado por IA</strong> que <strong>conecta, centraliza</strong> y <strong>monetiza</strong> toda tu <strong>presencia digital</strong>.",
         MORE_INFO_TITLE: "EL PROBLEMA QUE RESOLVEMOS",
         MIGOZZ_SOLUTION_LABEL: "Solución Migozz: ",
         PROBLEMS: [
@@ -38,16 +38,20 @@ const ES: Translations = {
                 SOLUTION: "Cobramos tarifas más bajas para que te quedes con más dinero del que ganas."
             }
         ],
-        JOIN_TITLE: "¡Únete a Migozz!",
-        JOIN_SUBTITLE: "¡Crea tu Ecosistema Social con IA! Recibe Regalos y Monetiza.",
+        JOIN_TITLE: "¡ÚNETE A MIGOZZ!",
+        JOIN_SUBTITLE_ONE: "¡Crea tu Ecosistema Social con IA!",
+        JOIN_SUBTITLE_TWO: "Recibe Regalos y Monetiza.",
         USERNAME_PLACEHOLDER: "tunombre",
         EMAIL_PLACEHOLDER: "Ingresa tu correo",
-        CLAIM_BTN: "Validar disponibilidad ",
+        CLAIM_BTN: "Verificar Disponibilidad",
         PRE_SAVE_BTN: "Pre-Guardar",
-        SECURITY_NOTE_PART_1: "Sin tarifa de registro",
-        SECURITY_NOTE_PART_2: "Tu información está segura.",
+        SECURITY_NOTE_PART_1: "Seguro. Gratis. Sin complicaciones.",
+        SECURITY_NOTE_PART_2: "",
+        SLIDE_1_TITLE: "MIRA TU IMPACTO GLOBAL<br />EN UN SOLO LUGAR",
         SLIDE_1_TEXT: "Visualiza el número total de tus seguidores en todas tus plataformas. Migozz te muestra el verdadero poder de tu comunidad.",
+        SLIDE_2_TITLE: "HAZ CRECER TU<br />INFLUENCIA EN TODAS PARTES",
         SLIDE_2_TEXT: "Tus seguidores pueden seguirte en otras redes directamente desde Migozz. Tú decides cómo y dónde conectar.",
+        SLIDE_3_TITLE: "TU IMPACTO ES<br />RECOMPENSADO.",
         SLIDE_3_TEXT: "Recibe regalos por tu influencia y participación. Cuanto más creces, más recompensas desbloqueas.",
         WHATSAPP_BTN: "Únete a nuestro canal de WhatsApp",
         ALERTS: {

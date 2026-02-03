@@ -2,8 +2,8 @@ import type { Translations } from "../types";
 
 const EN: Translations = {
     LANDING: {
-        WELCOME_TITLE: "THE FIRST AI SOCIAL MEDIA ECOSYSTEM",
-        WELCOME_SUBTITLE: "Migozz is the ultimate AI-powered social ecosystem that connects, centralizes, and monetizes your entire digital presence.",
+        WELCOME_TITLE: "YOUR FIRST AI<br /><span class=\"highlight\">ECOSYSTEM</span>",
+        WELCOME_SUBTITLE: "Migozz is the <strong>ultimate AI-powered social ecosystem</strong> that <strong>connects, centralizes,</strong> and <strong>monetizes</strong> your entire <strong>digital presence</strong>.",
         MORE_INFO_TITLE: "THE PROBLEM WE’RE SOLVING",
         MIGOZZ_SOLUTION_LABEL: "Migozz Solution: ",
         PROBLEMS: [
@@ -38,16 +38,20 @@ const EN: Translations = {
                 SOLUTION: "We charge lower fees so you keep more of the money you earn."
             }
         ],
-        JOIN_TITLE: "Join Migozz!",
-        JOIN_SUBTITLE: "Create your AI Social Ecosystem! Recieve Gifts & Monetize.",
+        JOIN_TITLE: "JOIN MIGOZZ!",
+        JOIN_SUBTITLE_ONE: "Create your AI Social Ecosystem!",
+        JOIN_SUBTITLE_TWO: "Recieve Gifts & Monetize.",
         USERNAME_PLACEHOLDER: "yourname",
         EMAIL_PLACEHOLDER: "Enter your email",
-        CLAIM_BTN: "Check availability",
+        CLAIM_BTN: "Check Availability",
         PRE_SAVE_BTN: "Pre-Save",
-        SECURITY_NOTE_PART_1: "No registration fee",
-        SECURITY_NOTE_PART_2: "Your information is secure.",
+        SECURITY_NOTE_PART_1: "Safe. Free. Hassle-free.",
+        SECURITY_NOTE_PART_2: "",
+        SLIDE_1_TITLE: "VIEW YOUR GLOBAL<br />IMPACT IN ONE PLACE",
         SLIDE_1_TEXT: "Visualize the total number of your followers across all your platforms. Migozz shows you the true power of your community.",
+        SLIDE_2_TITLE: "GROW YOUR<br />INFLUENCE EVERYWHERE",
         SLIDE_2_TEXT: "Your followers can follow you on other networks directly from Migozz. You decide how and where to connect.",
+        SLIDE_3_TITLE: "YOUR IMPACT IS<br />REWARDED.",
         SLIDE_3_TEXT: "Receive gifts for your influence and participation. The more you grow, the more rewards you unlock.",
         WHATSAPP_BTN: "Join our WhatsApp channel",
         ALERTS: {

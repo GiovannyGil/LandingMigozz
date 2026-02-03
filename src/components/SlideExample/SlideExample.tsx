@@ -16,9 +16,15 @@ export const SlideExample = (): JSX.Element => {
                     <div className="example-image-container">
                         <img src={exampleOne} alt="Visualize followers" className="example-image" />
                     </div>
-                    <p className="example-text">
-                        {language?.LANDING?.SLIDE_1_TEXT}
-                    </p>
+                    <div className="example-text-content">
+                        <h3 
+                            className="example-title"
+                            dangerouslySetInnerHTML={{ __html: language?.LANDING?.SLIDE_1_TITLE || "" }}
+                        />
+                        <p className="example-text">
+                            {language?.LANDING?.SLIDE_1_TEXT}
+                        </p>
+                    </div>
                 </div>
 
                 {/* Item 2 */}
@@ -26,9 +32,15 @@ export const SlideExample = (): JSX.Element => {
                     <div className="example-image-container">
                         <img src={exampleThree} alt="Connect networks" className="example-image" />
                     </div>
-                    <p className="example-text">
-                        {language?.LANDING?.SLIDE_2_TEXT}
-                    </p>
+                    <div className="example-text-content">
+                        <h3 
+                            className="example-title"
+                            dangerouslySetInnerHTML={{ __html: language?.LANDING?.SLIDE_2_TITLE || "" }}
+                        />
+                        <p className="example-text">
+                            {language?.LANDING?.SLIDE_2_TEXT}
+                        </p>
+                    </div>
                 </div>
 
                 {/* Item 3 */}
@@ -36,9 +48,15 @@ export const SlideExample = (): JSX.Element => {
                     <div className="example-image-container">
                         <img src={exampleTwo} alt="Receive gifts and rewards" className="example-image" />
                     </div>
-                    <p className="example-text">
-                        {language?.LANDING?.SLIDE_3_TEXT}
-                    </p>
+                    <div className="example-text-content">
+                        <h3 
+                            className="example-title"
+                            dangerouslySetInnerHTML={{ __html: language?.LANDING?.SLIDE_3_TITLE || "" }}
+                        />
+                        <p className="example-text">
+                            {language?.LANDING?.SLIDE_3_TEXT}
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

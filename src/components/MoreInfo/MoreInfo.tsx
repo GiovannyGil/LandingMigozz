@@ -9,9 +9,11 @@ export const MoreInfo = (): JSX.Element => {
 
     return (
         <section className="more-info-section">
-            <h1 className="more-info-title">
-                {language?.LANDING?.MORE_INFO_TITLE}
-            </h1>
+            <div className="more-info-title-container">
+                <h1 className="more-info-title">
+                    {language?.LANDING?.MORE_INFO_TITLE}
+                </h1>
+            </div>
 
             <div className="more-info-grid">
                 {infoItems.map((item, index) => (

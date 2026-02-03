@@ -11,15 +11,19 @@ export interface Translations {
             SOLUTION: string;
         }[];
         JOIN_TITLE: string;
-        JOIN_SUBTITLE: string;
+        JOIN_SUBTITLE_ONE: string;
+        JOIN_SUBTITLE_TWO: string;
         USERNAME_PLACEHOLDER: string;
         EMAIL_PLACEHOLDER: string;
         CLAIM_BTN: string;
         PRE_SAVE_BTN: string;
         SECURITY_NOTE_PART_1: string;
         SECURITY_NOTE_PART_2: string;
+        SLIDE_1_TITLE: string;
         SLIDE_1_TEXT: string;
+        SLIDE_2_TITLE: string;
         SLIDE_2_TEXT: string;
+        SLIDE_3_TITLE: string;
         SLIDE_3_TEXT: string;
         WHATSAPP_BTN: string;
         ALERTS: {

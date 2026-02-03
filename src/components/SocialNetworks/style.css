@@ -1,12 +1,13 @@
 .social-networks-container {
-    background-color: #ffffff;
+    background: linear-gradient(90deg, #C238BD 0%, #681C99 100%); /* Pink to Purple gradient */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
+    padding: 30px 20px; /* Reduced vertical padding */
     width: 100%;
     font-family: 'Inter', sans-serif;
-    box-sizing: border-box; /* Ensure padding is included in width */
+    box-sizing: border-box;
+    margin-top: 0;
 }
 
 .social-content {
@@ -48,21 +49,23 @@
 }
 
 /* WhatsApp Button */
+/* WhatsApp Button */
 .whatsapp-button {
-    background: linear-gradient(90deg, #A855F7 0%, #7E22CE 100%);
+    background-color: #6B218D; /* Darker purple bubble */
     color: white;
-    padding: 10px 30px 10px 15px;
+    padding: 12px 30px 12px 20px;
     border-radius: 50px;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     font-weight: 500;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-    white-space: nowrap; /* Prevent text wrapping if possible */
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    white-space: nowrap;
     box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,0.1); /* Subtle border for definition */
 }
 
 .whatsapp-button:hover {
