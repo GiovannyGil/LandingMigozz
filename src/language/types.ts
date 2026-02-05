@@ -38,7 +38,14 @@ export interface Translations {
             VERIFICATION_SENT: string;
             REGISTRATION_ERROR: string;
             PROCESS_ERROR: string;
-        }
+        };
+        PRE_REGISTERS_TITLE: string;
+        PRE_REGISTERS_SUBTITLE: string;
+        REGISTERED_USERS_LABEL: string;
+        SEARCH_PLACEHOLDER: string;
+        USERS_TABLE_TITLE: string;
+        TABLE_HEADER_EMAIL: string;
+        TABLE_HEADER_USERNAME: string;
     }
 }
 

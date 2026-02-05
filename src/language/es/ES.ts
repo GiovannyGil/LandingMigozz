@@ -66,7 +66,14 @@ const ES: Translations = {
             VERIFICATION_SENT: "Se ha enviado un correo de verificación.",
             REGISTRATION_ERROR: "No se pudo completar el registro. Inténtalo de nuevo.",
             PROCESS_ERROR: "Ocurrió un error al procesar tu solicitud."
-        }
+        },
+        PRE_REGISTERS_TITLE: "¡BIENVENIDO A LA REVOLUCIÓN DE TU PRESENCIA DIGITAL!",
+        PRE_REGISTERS_SUBTITLE: "Todas estas personas ya han asegurado su nombre de usuario para experimentar todo el potencial de nuestro ecosistema IA. ¡No te quedes fuera, reserva el tuyo ahora!",
+        REGISTERED_USERS_LABEL: "Usuarios registrados",
+        SEARCH_PLACEHOLDER: "Buscar por nombre de usuario o correo",
+        USERS_TABLE_TITLE: "Usuarios",
+        TABLE_HEADER_EMAIL: "Correo",
+        TABLE_HEADER_USERNAME: "Usuario"
     }
 }
 

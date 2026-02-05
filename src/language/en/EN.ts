@@ -66,7 +66,14 @@ const EN: Translations = {
             VERIFICATION_SENT: "A verification email has been sent.",
             REGISTRATION_ERROR: "Could not complete registration. Please try again.",
             PROCESS_ERROR: "An error occurred while processing your request."
-        }
+        },
+        PRE_REGISTERS_TITLE: "WELCOME TO THE REVOLUTION OF YOUR DIGITAL PRESENCE!",
+        PRE_REGISTERS_SUBTITLE: "All these people have already secured their username to experience the full potential of our AI ecosystem. Don't miss out, reserve yours now!",
+        REGISTERED_USERS_LABEL: "Registered users",
+        SEARCH_PLACEHOLDER: "Search by username or email address",
+        USERS_TABLE_TITLE: "Users",
+        TABLE_HEADER_EMAIL: "Email",
+        TABLE_HEADER_USERNAME: "Username"
     }
 }
 

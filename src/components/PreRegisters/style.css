@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+.pre-registers-section {
+    width: 100%;
+    background-color: #000000;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    /* Optional: background ambient glow usually found in such designs */
+    background: radial-gradient(circle at 0% 0%, rgba(206, 8, 236, 0.6) 0%, rgba(0,0,0,0) 40%),
+                radial-gradient(circle at 100% 100%, rgba(206, 8, 236, 0.6) 0%, rgba(0,0,0,0) 40%),
+                #000;
+}
+
+.pre-content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    z-index: 2;
+}
+
+.pre-header {
+    text-align: center;
+    max-width: 100%;
+}
+
+.pre-title {
+    font-size: 3.7rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #D43AB6 50%, #9321BD 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pre-subtitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.5;
+}
+
+/* Counter Card */
+.counter-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a subtle shine effect */
+.counter-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+
+.counter-number {
+    font-size: 6rem;
+    font-weight: 800;
+    color: #b942cb; /* Fallback */
+    background: linear-gradient(180deg, #d64ce6 0%, #8e10a5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.counter-label {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* List Container */
+.users-list-container {
+    width: 100%;
+    max-width: 700px;
+}
+
+.list-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+/* Search Bar */
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.user-search-input {
+    width: 100%;
+    background-color: #1C1C1C;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 0.8rem 1rem 0.8rem 3rem; /* Left padding for icon */
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.user-search-input:focus {
+    border-color: #555;
+    background-color: #252525;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+}
+
+/* Table */
+.users-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    max-height: 500px; /* Limit to approx 10 rows */
+    overflow-y: auto; /* Scroll if exceeds max-height */
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.users-table th {
+    padding: 0.8rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    border-bottom: 1px solid #333;
+    font-size: 1.1rem;
+    position: sticky;
+    top: 0;
+    background-color: #000; /* Match section background for sticky effect */
+    z-index: 5;
+}
+
+.users-table td {
+    padding: 0.8rem;
+    color: #DDDDDD;
+    font-weight: 400;
+    border-bottom: 1px solid #222;
+}
+
+.users-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .pre-title {
+        font-size: 1.8rem;
+    }
+    
+    .counter-card {
+        padding: 1.5rem 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .counter-number {
+        font-size: 2.5rem;
+    }
+
+    .pre-content-wrapper {
+        gap: 2rem;
+    }
+
+    .users-table th, .users-table td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.95rem;
+    }
+}
